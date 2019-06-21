@@ -7,42 +7,61 @@ class Carousel {
     this.currentIndex = 0
 
     this.images[this.currentIndex].style.display = 'inline-block'
-    if (this.currentIndex > this.images.length) {
-      console.log(this.currentIndex, this.images.length)
-      this.currentIndex = 0
-    }
+
+    // if (this.currentIndex > this.images.length-1) {
+    //   this.currentIndex = 0
+    // }
 
     this.leftButton.addEventListener('click', () => this.previousSlide())
     this.rightButton.addEventListener('click', () => this.nextSlide())
   }
 
   previousSlide() {
+    // MAKE NEW IMAGE VISIBLE
     // subtract 1 from index
-    this.currentIndex--
-    if (this.currentIndex > this.images.length) {
-      // console.log(this.currentIndex, this.images.length)
-      this.currentIndex = 0
+    // console.log(this.currentIndex, this.images.length)
+    this.currentIndex -= 1
+    if (this.currentIndex < 0) {
+      this.currentIndex = this.images.length-1
     }
-    // change previous index to invisble
-    this.images[this.currentIndex+1].style.display = 'none'
+    // console.log('here', this.currentIndex, this.images.length)
     // change style to visible
-    this.images[this.currentIndex].style.display = 'inline-block'
-    // add animation here, will need to configure but can't see anything atm
-    // this.images[this.currentIndex].style.TweenLite.to(graph, 1.5, {
+    this.images[this.currentIndex].style.display = 'inline'
+
+    // MAKE OLD IMAGE DISPLAY NONE
+    let oldIdx = this.currentIndex-1
+    if (this.currentIndex >= this.images.length) {
+      oldIdx = 0
+    }
+    this.images[oldIdx].style.display = 'none'
+
+    // TweenLite.to(curImg, 1.5, {
     //   ease: SlowMo.ease.config(0.5, 0.4, false),
     //   y: -500
     // })
   }
 
   nextSlide() {
+    // MAKE NEW IMAGE VISIBLE
     // add 1 to index
-    this.currentIndex++
-    this.images[this.currentIndex-1].style.display = 'none'
-    this.images[this.currentIndex].style.display = 'inline-block'
-    // this.images[this.currentIndex].style.TweenLite.to(graph, 1.5, {
+    this.currentIndex += 1
+    if (this.currentIndex >= this.images.length) {
+      this.currentIndex = 0
+    }
+    const curImg = this.images[this.currentIndex]
+    curImg.style.display = 'inline'
+
+    // TweenLite.to(curImg, 1.5, {
     //   ease: SlowMo.ease.config(0.5, 0.4, false),
     //   y: -500
     // })
+
+    // MAKE OLD IMAGE DISPLAY NONE
+    let oldIdx = this.currentIndex-1
+    if (this.currentIndex === 0) {
+      oldIdx = this.images.length-1
+    }
+    this.images[oldIdx].style.display = 'none'
   }
 
   autoNext() {
