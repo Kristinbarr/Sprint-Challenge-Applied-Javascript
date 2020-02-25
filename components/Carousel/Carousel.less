@@ -15,6 +15,7 @@
     font-size: 40px;
     border-radius: 50%;
     position: absolute;
+
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -28,14 +29,17 @@
     top: 50%;
     left: 25px;
     transform: translate(0, -50%);
+    z-index: 5;
   }
   .right-button {
     top: 50%;
     right: 25px;
     transform: translate(0, -50%);
+    z-index: 5;
   }
-  img {
+  .card img {
     .width-100();
     display: none;
+    z-index: 0;
   }
 }

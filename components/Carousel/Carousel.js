@@ -17,9 +17,9 @@ class Carousel {
     // example of explicit binding
     // this.leftButton.addEventListener('click', this.previousSlide.bind(this))
 
-    window.setInterval(()=> {
-      return this.nextSlide()
-    }, 5000)
+    // window.setInterval(()=> {
+    //   return this.nextSlide()
+    // }, 5000)
   }
 
   previousSlide() {
@@ -34,10 +34,10 @@ class Carousel {
     }
     // change of image we want to show style to visible
     this.images[this.currentIndex].style.display = 'inline'
-    // TweenLite.from(this.images[this.currentIndex], 1.5, {
-    //   ease: Power4.easeOut, x: -500 })
 
     // future animaion to be configured
+      TweenLite.from(this.images[this.currentIndex], 1, {
+        ease: Power4.easeOut, x: -500 })
   }
 
   nextSlide() {
@@ -51,6 +51,7 @@ class Carousel {
     }
 
     this.images[this.currentIndex].style.display = 'inline'
+    this.images[this.currentIndex].style.translate = '200px 0px'
 
     // TweenLite.from(this.images[this.currentIndex], 1, {
     //   ease: Power4.easeOut, opacity: 0, x: 500 })
